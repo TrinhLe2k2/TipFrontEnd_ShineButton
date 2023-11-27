@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        :root {
+            --colorLike: #00fffc;
+            --colorFollow: #f200ff;
+            --colorSubscribe: #00ff40;
+        }
+        body {
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Raleway', sans-serif;
+        }
+        .btn {
+            padding: 8px 20px;
+            width: 200px;
+            height: 50px;
+            color: #000;
+            font-weight: 700;
+            border-radius: 0;
+            text-transform: uppercase;
+            margin: 25px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+        .btn:before {
+            content: "";
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform: translateX(-100%);
+            transition: 0.6s;
+            position: absolute;
+        }
+        #likeBtn:before {
+            background: linear-gradient(120deg, transparent, var(--colorLike), transparent);
+        }
+        #followBtn:before {
+            background: linear-gradient(120deg, transparent, var(--colorFollow), transparent);
+        }
+        #subscribeBtn:before {
+            background: linear-gradient(120deg, transparent, var(--colorSubscribe), transparent);
+        }
+
+        .btn:hover {
+            color: #fff;
+            background: transparent;
+            transition: 0.3s;
+        }
+
+        .btn:hover:before {
+            transform: translateX(100%);
+        }
+    </style>
+
+</head>
+<body>
+    <button class="btn" id="likeBtn">Like</button>
+    <button class="btn" id="followBtn">Follow</button>
+    <button class="btn" id="subscribeBtn">Subscribe</button>
+
+    <script>
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('mouseenter', function(event) {
+                const btnId = event.currentTarget.id;
+                switch (btnId) {
+                    case 'likeBtn':
+                        btn.style.boxShadow = '0 0 20px 5px var(--colorLike)';
+                        break;
+                    case 'followBtn':
+                        btn.style.boxShadow = '0 0 20px 5px var(--colorFollow)';
+                        break;
+                    case 'subscribeBtn':
+                        btn.style.boxShadow = '0 0 20px 5px var(--colorSubscribe)';
+                        break;
+                    default:
+                        break;
+                }
+            });
+            btn.addEventListener('mouseleave', function(event) {
+                btn.style.boxShadow = '';
+            });
+        })
+    </script>
+</body>
+</html>
